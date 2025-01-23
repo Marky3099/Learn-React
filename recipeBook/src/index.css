@@ -43,7 +43,7 @@
   display: flex;
   margin: auto;
   /* align-items: center; */
-  background-color: orange;
+  background-color: whitesmoke;
   width: auto;
   max-width: 700px;
   height: auto;
@@ -63,7 +63,10 @@
 .ready-second-content button {
   width: 15rem;
   height: auto;
+  background: orange;
+  color: whitesmoke;
   font-size: 2rem;
   border-radius: 10px;
   border: 0;
+  cursor: pointer;
 }
