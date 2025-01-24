@@ -1,0 +1,39 @@
+body{
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  background: purple;
+  align-items: center;
+}
+.nav-logo {
+  width: auto;
+  height: 10vh;
+}
+.nav-title {
+  font-size: 3rem;
+  color: aliceblue;
+}
+.input-meme {
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+  margin: 50px 10px;
+  gap: 20px;
+}
+.input-field {
+  display: flex;
+}
+.input-label {
+  font-size: 2rem;
+}
+.input-text {
+  width: 400px;
+  height: 4vh;
+  font-size: 25px;
+  padding: 10px;
+}
+.submit img {
+  width: 2em;
+}
