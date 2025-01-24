@@ -2,14 +2,17 @@ import InputIngredient from "./InputIngredient";
 import { useState } from "react";
 import RecipeCode from "./RecipeCode";
 import ListIngredients from "./ListIngredients";
+import { getRecipeFromMistral } from '../../ai';
 
 export default function MainContent(){
 
     const [ingredients, setIngredients] = useState([]);
-    const [isShown, setIsShown] = useState(false);
+    const [recipe, setRecipe] = useState("");
     
-    function handleGetRecipe(){
-        setIsShown(!isShown);
+    async function handleGetRecipe(){
+        const recipeData = await getRecipeFromMistral(ingredients);
+        setRecipe(recipeData)
+        
     }
 
     function handleSubmit(event){
@@ -30,7 +33,7 @@ export default function MainContent(){
                     handleGetRecipe = { handleGetRecipe }
                 /> 
             }
-            {isShown && <RecipeCode />} 
+            {recipe && <RecipeCode recipe={recipe}/>} 
         </main>
     )   
 }
