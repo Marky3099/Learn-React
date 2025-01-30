@@ -1,9 +1,9 @@
 import InputText from "./InputText";
 import ImageIcon from "../assets/image-icon.svg";
 
-export default function Form({onChange}){
+export default function Form({onChange, onSubmit}){
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <div className="input-meme">
                 <InputText 
                     title="Top"

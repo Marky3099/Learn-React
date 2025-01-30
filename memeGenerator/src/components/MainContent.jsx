@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "./Form";
 import ImageMeme from "./ImageMeme";
 
@@ -9,6 +9,16 @@ export default function MainContent(){
         src: "/src/assets/images/meme.jpg",
         alt: "meme"
     });
+    const [allMemeImages, setAllMemeImages] = useState([]);
+
+    useEffect(()=>{
+        fetch("https://api.imgflip.com/get_memes")
+        .then(res => res.json())
+        .then(data => {
+            setAllMemeImages(data.data.memes)
+        });
+    },[])
+
     function handleChange(event){
         const { name, value } = event.target;
         setMeme(current => ({
@@ -16,24 +26,21 @@ export default function MainContent(){
             [name]: value
         }))
     }
-    // function handleGenerate(event){
-    //     event.preventDefault();
-    //     const formData = new FormData(event.currentTarget);
-    //     const topText = formData.get("topText");
-    //     const bottomText = formData.get("bottomText");
+    function handleGenerate(event){
+        event.preventDefault();
         
-    //     setMeme({
-    //         topText: topText,
-    //         bottomText: bottomText,
-    //         src: "/src/assets/images/meme.jpg",
-    //         alt: "meme"
-    //     })
-    // }
+        const randomMemeImage = allMemeImages[Math.floor(Math.random() * allMemeImages.length)].url;
+
+        setMeme(current => ({
+            ...current,
+            src: randomMemeImage
+        }))
+    }
 
     return (
         <main>
             <Form 
-                // onSubmit={handleGenerate}
+                onSubmit={handleGenerate}
                 onChange={handleChange}
             />
             <ImageMeme 
